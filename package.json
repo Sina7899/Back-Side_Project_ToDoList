@@ -2,7 +2,7 @@
   "name": "back-side_project_todolist",
   "version": "1.0.0",
   "description": "ToDo List App Developed Based on NodeJS",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {},
   "repository": {
     "type": "git",
