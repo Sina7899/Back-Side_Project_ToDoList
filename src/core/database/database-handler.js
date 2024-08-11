@@ -4,17 +4,23 @@ import pg from "pg";
 const { Client } = pg;
 
 async function queryExecutor(query, variables) {
-  let client = undefined;
+  let client;
   try {
     client = new Client(POSTGRES_CREDENTIALS);
     await client.connect();
     const queryResult = await client.query(query, variables);
     return queryResult;
   } catch (err) {
-    console.error(err);
+    console.error("Error executing query:", err);
     return null;
   } finally {
-    await client.end();
+    if (client) {
+      try {
+        await client.end();
+      } catch (endErr) {
+        console.error("Error closing the database connection:", endErr);
+      }
+    }
   }
 }
 
