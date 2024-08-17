@@ -49,7 +49,7 @@ async function updateTaskService(
   return true;
 }
 
-async function deleteTaskService(table, id) {
+async function deleteTaskService(table, taskId) {
   const deletedTask = await deleteTask(table, taskId);
   if (
     deletedTask === null ||
