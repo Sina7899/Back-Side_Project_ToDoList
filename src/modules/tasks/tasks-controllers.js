@@ -11,7 +11,7 @@ const TABLE = process.env.MAIN_TABLE;
 
 const tasksInfoByUserIdController = async (req, res, next) => {
   try {
-    const userId = req.validatedParams.id;
+    const userId = req.validatedParams.userId;
     const tasks = await tasksInfoByUserIdService(TABLE, userId);
     if (tasks === null) {
       res.status(404).json({
@@ -84,7 +84,7 @@ const updateTaskController = async (req, res, next) => {
 
 const deleteTaskController = async (req, res, next) => {
   try {
-    const taskId = req.validatedParams.id;
+    const taskId = req.validatedParams.taskId;
     const deletedTask = await deleteTaskService(TABLE, taskId);
     if (deletedTask === false) {
       res.status(404).json({
