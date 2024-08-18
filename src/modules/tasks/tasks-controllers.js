@@ -7,7 +7,7 @@ import {
 
 import "dotenv/config";
 
-const TABLE = process.env.MAIN_TABLE;
+const TABLE = process.env.TABLE_2;
 
 const tasksInfoByUserIdController = async (req, res, next) => {
   try {
