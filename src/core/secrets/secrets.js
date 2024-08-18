@@ -9,4 +9,8 @@ const POSTGRES_CREDENTIALS = {
   ssl: true,
 };
 
-export { POSTGRES_CREDENTIALS };
+const JWT_SECRETS = {
+  signKey: process.env["SIGN_KEY"],
+};
+
+export { POSTGRES_CREDENTIALS, JWT_SECRETS };
