@@ -30,27 +30,29 @@ async function updateTaskService(
   taskId,
   newTitle,
   newDescription,
-  newStatus
+  newStatus,
+  userId
 ) {
   const updatedTask = await updateTask(
     table,
     taskId,
     newTitle,
     newDescription,
-    newStatus
+    newStatus,
+    userId
   );
   if (
     updatedTask === null ||
     updatedTask === undefined ||
-    updateTask.length === 0
+    updatedTask.length === 0
   ) {
     return false;
   }
   return true;
 }
 
-async function deleteTaskService(table, taskId) {
-  const deletedTask = await deleteTask(table, taskId);
+async function deleteTaskService(table, taskId, userId) {
+  const deletedTask = await deleteTask(table, taskId, userId);
   if (
     deletedTask === null ||
     deletedTask === undefined ||
