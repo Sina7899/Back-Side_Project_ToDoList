@@ -7,8 +7,7 @@ async function hash(input) {
     const hash = await bcrypt.hash(input, salt);
     return hash;
   } catch (error) {
-    console.log(error.message);
-    return null;
+    throw error;
   }
 }
 
@@ -17,8 +16,7 @@ async function hashValidator(input, inputHash) {
     const validatedHash = await bcrypt.compare(input, inputHash);
     return validatedHash;
   } catch (error) {
-    console.log(error.message);
-    return null;
+    throw error;
   }
 }
 
