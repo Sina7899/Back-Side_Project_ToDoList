@@ -7,11 +7,11 @@ import {
 
 import "dotenv/config";
 
-const TABLE = process.env.TABLE_2;
+const TABLE = process.env.TABLE_1;
 
 const tasksInfoByUserIdController = async (req, res, next) => {
   try {
-    const userId = req.validatedParams.userId;
+    const userId = req.userTokenData.userId;
     const tasks = await tasksInfoByUserIdService(TABLE, userId);
     if (tasks === null) {
       res.status(404).json({
@@ -30,7 +30,8 @@ const tasksInfoByUserIdController = async (req, res, next) => {
 
 const createTaskController = async (req, res, next) => {
   try {
-    const { userId, title, description } = req.validatedParams;
+    const { title, description } = req.validatedBody;
+    const userId = req.userTokenData.userId;
     const createdTask = await createTaskService(
       TABLE,
       userId,
@@ -43,7 +44,7 @@ const createTaskController = async (req, res, next) => {
       });
     } else {
       res.status(201).json({
-        massage: "The Task added successfully.",
+        massage: "Task added successfully.",
       });
     }
   } catch (error) {
@@ -56,22 +57,23 @@ const createTaskController = async (req, res, next) => {
 
 const updateTaskController = async (req, res, next) => {
   try {
-    const id = req.validatedParams.id;
-    const { taskId, title, description, status } = req.validatedParams;
-    const createdTask = await updateTaskService(
+    const userId = req.userTokenData.userId;
+    const { taskId, title, description, status } = req.validatedBody;
+    const updatedTask = await updateTaskService(
       TABLE,
       taskId,
       title,
       description,
-      status
+      status,
+      userId
     );
-    if (createdTask === false) {
+    if (updatedTask === false) {
       res.status(500).json({
         massage: "Task Update Failed!",
       });
     } else {
       res.status(201).json({
-        massage: "The Task updated successfully.",
+        massage: "Task updated successfully.",
       });
     }
   } catch (error) {
@@ -85,14 +87,15 @@ const updateTaskController = async (req, res, next) => {
 const deleteTaskController = async (req, res, next) => {
   try {
     const taskId = req.validatedParams.taskId;
-    const deletedTask = await deleteTaskService(TABLE, taskId);
+    const userId = req.userTokenData.userId;
+    const deletedTask = await deleteTaskService(TABLE, taskId, userId);
     if (deletedTask === false) {
       res.status(404).json({
-        message: `The task with id=${taskId} is not exists`,
+        message: "Task Delete Failed!",
       });
     } else {
       res.status(200).json({
-        massage: "The Task deleted successfully.",
+        massage: "Task deleted successfully.",
       });
     }
   } catch (error) {
