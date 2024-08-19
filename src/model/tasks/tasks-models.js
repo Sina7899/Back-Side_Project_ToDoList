@@ -33,26 +33,29 @@ export async function updateTask(
   taskId,
   newTitle,
   newDescription,
-  newStatus
+  newStatus,
+  userId
 ) {
   const query = `
       UPDATE ${table} SET 
-      title=$1,description=$2,status=$3 WHERE task_id = $4
+      title=$1,description=$2,status=$3 WHERE task_id = $4 AND user_id=$5
       RETURNING *`;
   let databaseResponse = await queryExecutor(query, [
     newTitle,
     newDescription,
     newStatus,
     taskId,
+    userId,
   ]);
   let updatedTaskResultAsArray = databaseResponse.rows;
+  console.log(updatedTaskResultAsArray);
 
   return updatedTaskResultAsArray;
 }
 
-export async function deleteTask(table, taskId) {
-  const query = `DELETE FROM ${table} WHERE task_id =$1 RETURNING *`;
-  let databaseResponse = await queryExecutor(query, [taskId]);
+export async function deleteTask(table, taskId, userId) {
+  const query = `DELETE FROM ${table} WHERE task_id =$1 AND user_id=$2 RETURNING *`;
+  let databaseResponse = await queryExecutor(query, [taskId, userId]);
   let DeletedTaskResultAsArray = databaseResponse.rows;
 
   return DeletedTaskResultAsArray;
