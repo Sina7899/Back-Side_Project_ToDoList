@@ -1,7 +1,6 @@
 import express from "express";
 
 import {
-  tasksInfoByUserIdValidator,
   createTaskValidator,
   updateTaskValidator,
   deleteTaskValidator,
@@ -16,7 +15,7 @@ import {
 
 const router = express.Router();
 
-router.get("/:userId", tasksInfoByUserIdValidator, tasksInfoByUserIdController);
+router.get("", tasksInfoByUserIdController);
 router.post("", createTaskValidator, createTaskController);
 router.put("", updateTaskValidator, updateTaskController);
 router.delete("/:taskId", deleteTaskValidator, deleteTaskController);
