@@ -11,14 +11,12 @@ async function queryExecutor(query, variables) {
     const queryResult = await client.query(query, variables);
     return queryResult;
   } catch (err) {
-    console.error("Error executing query:", err);
     throw err;
   } finally {
     if (client) {
       try {
         await client.end();
       } catch (endErr) {
-        console.error("Error closing the database connection:", endErr);
         throw endErr;
       }
     }
