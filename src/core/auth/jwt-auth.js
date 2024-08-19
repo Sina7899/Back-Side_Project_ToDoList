@@ -10,7 +10,6 @@ function jwtValidator(jwtToken) {
     const verifiedJWT = jwt.verify(jwtToken, JWT_SECRETS.signKey);
     return verifiedJWT;
   } catch (error) {
-    console.log(error);
     throw new Error("Invalid JWT Token!");
   }
 }
