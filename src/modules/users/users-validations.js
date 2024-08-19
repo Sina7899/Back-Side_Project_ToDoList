@@ -21,6 +21,7 @@ const createUserValidator = async (req, res, next) => {
     next();
   } catch (error) {
     const errorMessages = error.details.map((detail) => detail.message);
+    console.error(errorMessages);
     res.status(400).json({ errors: errorMessages });
   }
 };
@@ -39,6 +40,7 @@ const loginUserValidator = async (req, res, next) => {
     next();
   } catch (error) {
     const errorMessages = error.details.map((detail) => detail.message);
+    console.error(errorMessages);
     res.status(400).json({ errors: errorMessages });
   }
 };

@@ -21,7 +21,7 @@ const tasksInfoByUserIdController = async (req, res, next) => {
       res.json(tasks);
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).json({
       message: error.message,
     });
@@ -48,7 +48,7 @@ const createTaskController = async (req, res, next) => {
       });
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).json({
       message: error.message,
     });
@@ -77,7 +77,7 @@ const updateTaskController = async (req, res, next) => {
       });
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).json({
       message: error.message,
     });
@@ -99,7 +99,7 @@ const deleteTaskController = async (req, res, next) => {
       });
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).json({
       message: error.message,
     });

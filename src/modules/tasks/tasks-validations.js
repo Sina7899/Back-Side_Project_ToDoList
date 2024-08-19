@@ -14,6 +14,7 @@ const createTaskValidator = async (req, res, next) => {
     next();
   } catch (error) {
     const errorMessages = error.details.map((detail) => detail.message);
+    console.error(errorMessages);
     res.status(400).json({ errors: errorMessages });
   }
 };
@@ -34,6 +35,7 @@ const updateTaskValidator = async (req, res, next) => {
     next();
   } catch (error) {
     const errorMessages = error.details.map((detail) => detail.message);
+    console.error(errorMessages);
     res.status(400).json({ errors: errorMessages });
   }
 };
@@ -48,6 +50,7 @@ const deleteTaskValidator = async (req, res, next) => {
     req.validatedParams = validatedParams;
     next();
   } catch (error) {
+    console.error(error.messages);
     res.status(400).json({ message: error.message });
   }
 };
