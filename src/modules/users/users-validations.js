@@ -8,7 +8,7 @@ const createUserValidator = async (req, res, next) => {
       username: Joi.string().min(3).required(),
       password: Joi.string()
         .min(5)
-        .max(10)
+        .max(20)
         .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
         .required(),
       repeat_password: Joi.ref("password"),
