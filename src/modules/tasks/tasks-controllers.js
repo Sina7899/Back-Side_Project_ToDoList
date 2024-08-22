@@ -18,7 +18,7 @@ const tasksInfoByUserIdController = async (req, res, next) => {
         message: `No Task with this User_id=${userId} is found!`,
       });
     } else {
-      res.json(tasks);
+      res.status(200).json({ tasks: tasks, userInfo: req.userTokenData });
     }
   } catch (error) {
     console.error(error);
