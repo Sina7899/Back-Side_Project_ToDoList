@@ -10,7 +10,7 @@ async function tasksInfoByUserIdService(table, userId) {
   if (tasks === null || tasks === undefined || tasks.length === 0) {
     return null;
   }
-  return tasks[0];
+  return tasks;
 }
 
 async function createTaskService(table, userId, title, description) {
