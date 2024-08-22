@@ -5,7 +5,7 @@ async function createUser(table, firstName, lastName, username, password) {
     INSERT INTO ${table} 
       (first_Name,last_Name,username, password_hash) 
     VALUES 
-      ($1, $2, $3,$4);
+      ($1, $2, $3,$4)
     RETURNING *`;
   const databaseResponse = await queryExecutor(query, [
     firstName,
