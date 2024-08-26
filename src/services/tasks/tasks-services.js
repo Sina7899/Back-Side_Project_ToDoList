@@ -22,7 +22,7 @@ async function createTaskService(table, userId, title, description) {
   ) {
     return false;
   }
-  return true;
+  return createdTask;
 }
 
 async function updateTaskService(
