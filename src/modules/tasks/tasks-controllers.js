@@ -45,6 +45,7 @@ const createTaskController = async (req, res, next) => {
     } else {
       res.status(201).json({
         massage: "Task added successfully.",
+        newTask: createdTask,
       });
     }
   } catch (error) {
