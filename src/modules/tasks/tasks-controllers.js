@@ -75,6 +75,7 @@ const updateTaskController = async (req, res, next) => {
     } else {
       res.status(201).json({
         massage: "Task updated successfully.",
+        updatedTask: updatedTask,
       });
     }
   } catch (error) {

@@ -48,7 +48,7 @@ async function updateTaskService(
   ) {
     return false;
   }
-  return true;
+  return updatedTask;
 }
 
 async function deleteTaskService(table, taskId, userId) {
